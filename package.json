@@ -56,7 +56,7 @@
     "prettier": "3.2.4",
     "react-resize-observer": "^1.1.1",
     "resize-observer-polyfill": "^1.5.1",
-    "rimraf": "^3.0.2",
+    "rimraf": "^6.0.1",
     "rollup-plugin-copy": "3.5.0",
     "slugify": "^1.6.5",
     "ts-jest": "^29.1.2",
