@@ -1,16 +1,34 @@
 {
-  "name": "@deskpro-apps/my-app",
-  "title": "My App",
-  "description": "My Deskpro app",
+  "name": "@deskpro-apps/aircall",
+  "title": "Aircall",
+  "description": "Aircall integration for Deskpro",
   "version": "0.0.14",
   "scope": "agent",
   "isSingleInstall": false,
   "hasDevMode": true,
-  "targets": [{ "target": "ticket_sidebar", "entrypoint": "index.html" }],
+  "targets": [
+    { "target": "global", "entrypoint": "#/global", "options": {"height": "666px", "width": "376px"} },
+    { "target": "ticket_sidebar", "entrypoint": "#/ticket-sidebar" },
+    { "target": "user_sidebar", "entrypoint": "#/user-sidebar" }
+  ],
   "settings": {
-    "example": {
-      "title": "Example Setting",
-      "description": "Example backend only setting",
+    "aircall_api_id": {
+      "title": "Aircall API ID",
+      "description": "Aircall API ID",
+      "type": "string",
+      "isRequired": false,
+      "isBackendOnly": true
+    },
+    "aircall_api_secret": {
+      "title": "Aircall API secret",
+      "description": "Aircall API secret",
+      "type": "string",
+      "isRequired": false,
+      "isBackendOnly": true
+    },
+    "deskpro_apikey": {
+      "title": "Deskpro API key",
+      "description": "Deskpro API Key",
       "type": "string",
       "isRequired": false,
       "isBackendOnly": true
@@ -19,9 +37,9 @@
   "proxy": {
     "whitelist": [
       {
-        "url": "https://jsonplaceholder.typicode.com/.*",
-        "methods": ["GET"],
-        "timeout": 20
+        "url": "https://api.aircall.io/.*",
+        "methods": ["GET", "POST", "PUT", "DELETE"],
+        "timeout": 15
       }
     ]
   }

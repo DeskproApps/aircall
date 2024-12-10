@@ -1,10 +1,14 @@
 import { Routes, Route } from "react-router-dom";
-import { Main } from "@/pages";
+import GlobalApp from "@/pages/GlobalApp";
+import UserSidebarApp from "./pages/UserSidebarApp";
+import TicketSidebarApp from "./pages/TicketSidebarApp";
 
 const App = () => {
   return (
     <Routes>
-      <Route index element={<Main />} />
+      <Route path="/global" element={<GlobalApp />} />
+      <Route path="/ticket-sidebar" element={<TicketSidebarApp />} />
+      <Route path="/user-sidebar" element={<UserSidebarApp />} />
     </Routes>
   );
 }

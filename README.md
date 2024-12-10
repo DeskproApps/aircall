@@ -1,4 +1,4 @@
-My App
+Aircall
 ===
 
 TODO: Include a summary of app functionality and a screenshot
