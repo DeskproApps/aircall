@@ -42,13 +42,14 @@ export default function GlobalApp() {
   }, [call?.phoneNumber])
 
   // Act on dial data.
-  useEffect(() => {
+  useInitialisedDeskproAppClient((client) => {
     if (dial === undefined || aircallPhone === undefined) {
       return;
     }
 
     // Remove it from the queue and call it.
     setDial(undefined);
+    client.focus();
     aircallPhone.send('dial_number', { phone_number: dial }, () => undefined);
   }, [dial, aircallPhone]);
 

@@ -1,11 +1,11 @@
-import { Call } from "@/AirCallTypes";
-import { IDeskproClient, proxyFetch, useInitialisedDeskproAppClient } from "@deskpro/app-sdk";
-import { useEffect, useState } from "react";
+import { Call } from '@/AirCallTypes';
+import { IDeskproClient, proxyFetch, useInitialisedDeskproAppClient } from '@deskpro/app-sdk';
+import { useState } from 'react';
 
 async function getCallsForNumber(client: IDeskproClient, number: string): Promise<Call[]> {
     const fetch = await proxyFetch(client);
     const response = await fetch(
-        "https://api.aircall.io/v1/calls/search?phone_number=" + number,
+        'https://api.aircall.io/v1/calls/search?phone_number=' + number,
         {
             headers: {
                 Authorization: `Basic __aircall_api_id+':'+aircall_api_secret.base64__`,

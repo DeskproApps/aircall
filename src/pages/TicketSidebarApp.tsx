@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import {
   LoadingSpinner,
   useDeskproLatestAppContext,
+  useInitialisedDeskproAppClient,
 } from "@deskpro/app-sdk";
 import useCalls from "@/hooks/useCalls";
 import CallList from "@/components/CallList";
