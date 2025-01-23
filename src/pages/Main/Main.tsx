@@ -20,7 +20,7 @@ import type { TicketData } from "@/types";
 export const Main = () => {
   const [ticketContext, setTicketContext] = useState<Context<TicketData> | null>(null);
   const posts = usePosts();
-  const client = useDeskproAppClient();
+  const client = useDeskproAppClient(); // eslint-disable-line @typescript-eslint/no-unused-vars
 
   // Add a "refresh" button @see https://support.deskpro.com/en-US/guides/developers/app-elements
   useDeskproElements(({ registerElement }) => {
