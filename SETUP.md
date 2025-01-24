@@ -1,4 +1,4 @@
-My App Setup Instructions
+Aircall Setup Instructions
 ===
 
 TODO: Write setup instructions
