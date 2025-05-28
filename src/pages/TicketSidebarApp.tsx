@@ -2,33 +2,34 @@ import { useEffect } from "react";
 import {
   LoadingSpinner,
   useDeskproLatestAppContext,
-  useInitialisedDeskproAppClient,
 } from "@deskpro/app-sdk";
 import useCalls from "@/hooks/useCalls";
 import CallList from "@/components/CallList";
 import ButtonDial from "@/components/ButtonDial";
+import { ContextData, ContextSettings } from "@/types/deskpro/context";
 
 export default function TicketSidebarApp() {
-  const { context } = useDeskproLatestAppContext<any, any>();
+  const { context } = useDeskproLatestAppContext<ContextData, ContextSettings>();
+
   const {
     setPhoneNumbers,
     calls,
   } = useCalls();
 
-  const phoneNumbers = (context?.data?.ticket?.primaryUser?.phoneNumbers) as { number: string }[] | undefined;
+  const phoneNumbers = context?.data?.ticket?.primaryUser?.phoneNumbers
 
   useEffect(() => {
     if (phoneNumbers) {
       setPhoneNumbers(phoneNumbers.map((phoneNumber) => phoneNumber.number));
     }
-  }, [phoneNumbers]);
+  }, [phoneNumbers, setPhoneNumbers]);
 
   if (phoneNumbers === undefined) {
     return <LoadingSpinner />;
   }
 
   return <>
-    {(phoneNumbers??[]).map(phoneNumber => <ButtonDial key={phoneNumber.number} phoneNumber={phoneNumber.number} />)}
+    {phoneNumbers.map(phoneNumber => <ButtonDial key={phoneNumber.number} phoneNumber={phoneNumber.number} />)}
     <CallList calls={calls} />;
   </>
 };

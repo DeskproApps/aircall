@@ -25,13 +25,6 @@
       "type": "string",
       "isRequired": false,
       "isBackendOnly": true
-    },
-    "deskpro_apikey": {
-      "title": "Deskpro API key",
-      "description": "Deskpro API Key",
-      "type": "string",
-      "isRequired": false,
-      "isBackendOnly": true
     }
   },
   "proxy": {

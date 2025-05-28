@@ -3,7 +3,7 @@ declare module 'aircall-everywhere' {
     constructor(options: AircallPhoneOptions);
     isLoggedIn(callback: (result: boolean) => void): void;
     on<E extends keyof AircallEventMap>(event: E, callback: (event: AircallEventMap[E]) => void): void;
-    send(event: 'dial_number', payload: { phone_number: string }, callback: (success: boolean, data?: any) => void): void;
+    send(event: 'dial_number', payload: { phone_number: string }, callback: (success: boolean, data?: unknown) => void): void;
   }
 
   export type AircallPhoneOptions = {
@@ -21,7 +21,7 @@ declare module 'aircall-everywhere' {
       last_name: string;
       company_name: string;
     };
-    settings: Record<string, any>;
+    settings: Record<string, unknown>;
   }
 
   export type AircallEventIncomingCall = {
