@@ -26,6 +26,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^4.36.1
         version: 4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      aircall-everywhere:
+        specifier: ^1.8.0
+        version: 1.8.0
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -1349,6 +1352,9 @@ packages:
   agent-base@6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
     engines: {node: '>= 6.0.0'}
+
+  aircall-everywhere@1.8.0:
+    resolution: {integrity: sha512-XNTce9/T9Xlx7d+5GpBbbjjCoqb8V98z3gsJR3aFnn745kKLOkBmczRkWKCZrFyepBHfEoKo/yX1Lnb81sU9yA==}
 
   ajv@6.12.6:
     resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
@@ -4705,6 +4711,8 @@ snapshots:
       debug: 4.4.1
     transitivePeerDependencies:
       - supports-color
+
+  aircall-everywhere@1.8.0: {}
 
   ajv@6.12.6:
     dependencies:
