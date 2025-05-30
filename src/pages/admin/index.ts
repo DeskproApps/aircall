@@ -1,0 +1,1 @@
+export { default as VerifySettingsPage } from "./verify-settings";

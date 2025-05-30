@@ -4,16 +4,31 @@
   "description": "Aircall integration for Deskpro",
   "version": "0.0.24",
   "scope": "agent",
-  "isSingleInstall": false,
+  "isSingleInstall": true,
   "hasDevMode": true,
   "targets": [{ "target": "ticket_sidebar", "entrypoint": "index.html" }],
   "settings": {
-    "example": {
-      "title": "Example Setting",
-      "description": "Example backend only setting",
+    "aircall_api_id": {
+      "title": "API ID",
+      "description": "Aircall API ID",
       "type": "string",
-      "isRequired": false,
+      "isRequired": true,
       "isBackendOnly": true
+    },
+    "aircall_api_token": {
+      "title": "API Token",
+      "description": "Aircall API Token",
+      "type": "string",
+      "isRequired": true,
+      "isBackendOnly": true
+    },
+    "verify_settings": {
+      "title": "",
+      "type": "app_embedded",
+      "options": { "entrypoint": "#/admin/verify-settings", "height": 60 },
+      "isRequired": false,
+      "isBackendOnly": false,
+      "order": 40
     }
   },
   "proxy": {
@@ -22,6 +37,13 @@
         "url": "https://jsonplaceholder.typicode.com/.*",
         "methods": ["GET"],
         "timeout": 20
+      },
+      {
+        "url": "https://(.*)@api.aircall.io/v1/ping",
+        "methods": [
+          "GET"
+        ],
+        "timeout": 30
       }
     ]
   }
