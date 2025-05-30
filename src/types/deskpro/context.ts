@@ -8,7 +8,7 @@ interface DeskproAppMetadata {
     title: string
 }
 
-interface UserPhoneNumber {
+export interface UserPhoneNumber {
     ext: string
     guessedType: string
     id: string
