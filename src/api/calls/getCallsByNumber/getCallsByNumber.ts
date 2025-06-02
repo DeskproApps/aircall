@@ -10,6 +10,7 @@ export default async function getCallsByNumber(client: IDeskproClient, phoneNumb
             ["phone_number", phoneNumber],
             ["per_page", "100"],
             ["fetch_contact", "true"],
+            ["order", "desc"],
         ]).toString()}`,
     })
 }
