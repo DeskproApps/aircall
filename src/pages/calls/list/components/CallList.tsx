@@ -1,8 +1,8 @@
 import { Call } from "@/types/aircall";
-import { HorizontalDivider, LoadingSpinner } from "@deskpro/app-sdk";
+import { CallDetails } from "./CallDetails";
 import { DeskproTheme, Stack } from "@deskpro/deskpro-ui";
 import { Fragment } from "react/jsx-runtime";
-import { CallDetails } from "./CallDetails";
+import { HorizontalDivider, LoadingSpinner } from "@deskpro/app-sdk";
 
 interface CallListProps {
     calls: Call[]
@@ -13,7 +13,26 @@ export function CallList(props: Readonly<CallListProps>) {
     const { calls, theme, isLoading } = props
 
     if (isLoading) {
-        return <LoadingSpinner />
+        return (
+            <Stack align="center" justify="center" style={{ width: "100%" }}>
+                <LoadingSpinner />
+            </Stack>
+        )
+    }
+
+    if (calls.length < 1) {
+        return (
+            <Stack padding={12}>
+                <em style={{
+                    color: theme.colors.grey80,
+                    whiteSpace: "normal",
+                    wordBreak: "break-word",
+                    fontSize: "12px"
+                }}>
+                    No Call History Found For The Provided Number(s).
+                </em>
+            </Stack>
+        )
     }
 
     return (
