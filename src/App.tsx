@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { Main } from "@/pages";
 import { VerifySettingsPage } from "./pages/admin";
-import { ListCallsPage } from "./pages/calls";
+import { CallDetailsPage, ListCallsPage } from "./pages/calls";
 
 const App = () => {
   return (
@@ -14,6 +14,10 @@ const App = () => {
 
         <Route path="calls">
           <Route index element={<ListCallsPage />} />
+          <Route path=":callId" >
+            <Route index element={<CallDetailsPage />} />
+          </Route>
+
         </Route>
       </Route>
     </Routes>

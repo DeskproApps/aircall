@@ -1,7 +1,7 @@
 import { ArrowDownLeftIcon, ArrowUpRightIcon } from "@/components/icons"
 import { Call } from "@/types/aircall"
 import { DeskproTheme, P1, Stack } from "@deskpro/deskpro-ui"
-import { ExternalIconLink } from "@deskpro/app-sdk"
+import { ExternalIconLink, Link } from "@deskpro/app-sdk"
 import { formatDuration, formatTimestamp } from "@/utils/date"
 import AircallLogo from "@/components/AircallLogo"
 
@@ -28,9 +28,13 @@ export function CallDetails(props: Readonly<CallDetailsProps>) {
                 </Stack>
 
                 <Stack vertical gap={3}>
-                    <P1 style={{ fontWeight: 500, fontSize: "12px" }}>
+                    <Link
+                    color={"grey100"}
+                     href={`/#/calls/${call.id}`}
+                      style={{ fontWeight: 500, fontSize: "12px" }}
+                      >
                         {targetUser.name}
-                    </P1>
+                    </Link>
 
                     {targetUser.email && (
                         <P1 style={{ fontWeight: 400, fontSize: "11px", color: theme.colors.grey80, wordBreak: "break-all" }}>

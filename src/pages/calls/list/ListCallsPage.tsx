@@ -1,11 +1,17 @@
 import { CallList, ContactDetails } from "./components";
 import { ContextData, ContextSettings } from "@/types/deskpro/context";
-import { HorizontalDivider, useDeskproAppTheme, useDeskproLatestAppContext } from "@deskpro/app-sdk";
+import { HorizontalDivider, useDeskproAppTheme, useDeskproElements, useDeskproLatestAppContext } from "@deskpro/app-sdk";
 import { Stack } from "@deskpro/deskpro-ui";
 import { useCalls } from "./hooks";
 import getDeskproUserFromContext from "@/utils/getDeskproUser";
 
 export default function ListCallsPage() {
+    useDeskproElements(({ clearElements, registerElement, deRegisterElement }) => {
+        clearElements()
+        deRegisterElement("home")
+        registerElement("refresh", { type: "refresh_button" })
+    }, [])
+
     const { context } = useDeskproLatestAppContext<ContextData, ContextSettings>();
     const { theme } = useDeskproAppTheme()
 
@@ -16,7 +22,7 @@ export default function ListCallsPage() {
     const { isLoading, calls } = useCalls(phoneNumbers ?? [])
 
     return (
-        <Stack vertical gap={0} style={{ width: "100%" }}>
+        <Stack vertical style={{ width: "100%" }}>
             <ContactDetails
                 contact={
                     {
