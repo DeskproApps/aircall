@@ -1,7 +1,8 @@
-import { DeskproTheme } from "@deskpro/deskpro-ui";
 import { CSSProperties } from "react";
+import { DeskproTheme } from "@deskpro/deskpro-ui";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import useLocalStorageState from "use-local-storage-state";
 
 interface ButtonDialProps {
     number: string
@@ -11,6 +12,8 @@ interface ButtonDialProps {
 
 export default function ButtonDial(props: Readonly<ButtonDialProps>) {
     const { number, theme, width = "fit-content" } = props
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [dialledNumber, setDialledNumber] = useLocalStorageState<string | undefined>('aircall-dialled-number', undefined);
 
     const buttonStyles: CSSProperties = {
         width,
@@ -29,7 +32,7 @@ export default function ButtonDial(props: Readonly<ButtonDialProps>) {
     }
 
     return (
-        <button style={buttonStyles} onClick={() => { console.log("To be implemented") }}>
+        <button style={buttonStyles} onClick={() => { setDialledNumber(number) }}>
             <span style={{ color: theme.colors.turquoise100 }}>
                 <FontAwesomeIcon size="sm" icon={faPhone} />
             </span>

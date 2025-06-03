@@ -7,7 +7,7 @@ declare module 'aircall-everywhere' {
   }
 
   export type AircallPhoneOptions = {
-    domToLoadPhone: string;
+    domToLoadWorkspace: string;
     onLogin: (settings: AircallPhoneSettings) => void;
     onLogout: () => void;
     integrationToLoad?: string,

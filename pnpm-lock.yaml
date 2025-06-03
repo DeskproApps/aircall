@@ -30,8 +30,8 @@ importers:
         specifier: ^4.36.1
         version: 4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       aircall-everywhere:
-        specifier: ^1.8.0
-        version: 1.8.0
+        specifier: ^2.0.4
+        version: 2.0.4
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -50,6 +50,9 @@ importers:
       styled-components:
         specifier: ^6.1.18
         version: 6.1.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      use-local-storage-state:
+        specifier: ^19.5.0
+        version: 19.5.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       zod:
         specifier: ^3.25.49
         version: 3.25.49
@@ -1370,8 +1373,9 @@ packages:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
     engines: {node: '>= 6.0.0'}
 
-  aircall-everywhere@1.8.0:
-    resolution: {integrity: sha512-XNTce9/T9Xlx7d+5GpBbbjjCoqb8V98z3gsJR3aFnn745kKLOkBmczRkWKCZrFyepBHfEoKo/yX1Lnb81sU9yA==}
+  aircall-everywhere@2.0.4:
+    resolution: {integrity: sha512-AqGlv8PZ2E3BABEGnIpGVmf9MpSaKNMMSdi4uYWMG0uSoJw9c1BUoPgfjrGcq8UH4m9qiDzgkfqd8DaJq1k0Ww==}
+    engines: {node: '>=16.0.0'}
 
   ajv@6.12.6:
     resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
@@ -3262,6 +3266,13 @@ packages:
     peerDependencies:
       react: '>=16.8.0'
 
+  use-local-storage-state@19.5.0:
+    resolution: {integrity: sha512-sUJAyFvsmqMpBhdwaRr7GTKkkoxb6PWeNVvpBDrLuwQF1PpbJRKIbOYeLLeqJI7B3wdfFlLLCBbmOdopiSTBOw==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: '>=18'
+      react-dom: '>=18'
+
   use-sync-external-store@1.5.0:
     resolution: {integrity: sha512-Rb46I4cGGVBmjamjphe8L/UnvJD+uPPtTkNvX5mZgqdbavhI4EbgIWJiIHXJ8bc/i9EQGPRh4DwEURJ552Do0A==}
     peerDependencies:
@@ -4745,7 +4756,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  aircall-everywhere@1.8.0: {}
+  aircall-everywhere@2.0.4: {}
 
   ajv@6.12.6:
     dependencies:
@@ -6918,6 +6929,11 @@ snapshots:
   use-debounce@7.0.1(react@18.3.1):
     dependencies:
       react: 18.3.1
+
+  use-local-storage-state@19.5.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   use-sync-external-store@1.5.0(react@18.3.1):
     dependencies:

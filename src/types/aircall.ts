@@ -1,3 +1,9 @@
+// This is for the global call state.
+export type ActiveCall = {
+  callId?: number
+  phoneNumber: string
+}
+
 export type Call = {
   id: number;
   direct_link: string;
