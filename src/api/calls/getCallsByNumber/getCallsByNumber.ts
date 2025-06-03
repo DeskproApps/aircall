@@ -1,7 +1,7 @@
 import { Call } from "@/types/aircall";
 import { createSearchParams } from "react-router-dom";
 import { IDeskproClient } from "@deskpro/app-sdk";
-import baseRequest from "@/api/baseRequest/baseRequest";
+import baseRequest from "@/api/baseRequest";
 
 export default async function getCallsByNumber(client: IDeskproClient, phoneNumber: string) {
 

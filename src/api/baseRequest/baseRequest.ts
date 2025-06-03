@@ -2,7 +2,7 @@ import { IDeskproClient, proxyFetch } from "@deskpro/app-sdk";
 
 interface BaseRequestParams {
     endpoint: string,
-    method?: "GET",
+    method?: "GET" | "POST",
     data?: unknown
 }
 
@@ -14,22 +14,26 @@ interface BaseRequestParams {
  * @throws {DocusignError} If the HTTP status code indicates a failed request (not 2xx or 3xx).
  */
 export default async function baseRequest<T>(client: IDeskproClient, params: BaseRequestParams): Promise<T> {
-    const { endpoint, method } = params
+    const { endpoint, method, data } = params
 
     const baseURL = `https://api.aircall.io/v1`
     const requestURL = `${baseURL}/${endpoint}`
 
     const dpFetch = await proxyFetch(client)
 
-    const response = await dpFetch(
-        requestURL,
-        {
-            headers: {
-                Authorization: `Basic __aircall_api_id+':'+aircall_api_token.base64__`,
-            },
-            method: method
+    const options: RequestInit = {
+        method,
+        headers: {
+            Authorization: `Basic __aircall_api_id+':'+aircall_api_token.base64__`,
+            "Content-Type": "application/json",
         },
-    )
+    }
+
+    if (data) {
+        options.body = JSON.stringify(data)
+    }
+
+    const response = await dpFetch(requestURL, options)
 
     if (isResponseError(response)) {
         let errorData: unknown
