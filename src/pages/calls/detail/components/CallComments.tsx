@@ -5,7 +5,6 @@ import { formatTimeSince } from "@/utils/date";
 import { Fragment } from "react/jsx-runtime";
 import { HorizontalDivider } from "@deskpro/app-sdk";
 
-
 interface CallCommentsProps {
     comments: NonNullable<Call["comments"]>
     theme: DeskproTheme
@@ -48,15 +47,14 @@ export function CallComments(props: Readonly<CallCommentsProps>): JSX.Element {
 interface CommentCardProps {
     comment: CallComment
     theme: DeskproTheme
-
 }
 
 function CommentCard(props: Readonly<CommentCardProps>) {
     const { comment, theme } = props
     return (
-        <Stack wrap="nowrap" gap={4} style={{ width: "100%" }}>
+        <Stack wrap="nowrap" gap={10} style={{ width: "100%" }}>
 
-            <Stack vertical gap={4} style={{ width: "35px" }}>
+            <Stack vertical gap={4} style={{ width: "35px", flexShrink: 0 }}>
                 <Avatar
                     size={18}
                     name={comment.posted_by?.name}
