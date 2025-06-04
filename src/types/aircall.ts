@@ -59,12 +59,12 @@ export type Contact = {
     id: number
     label: string,
     value: string
-  }
+  }[]
   phone_numbers: {
     id: number
     label: string,
     value: string
-  }
+  }[]
 }
 
 export type CallComment = {
