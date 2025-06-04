@@ -50,11 +50,16 @@ type User = {
   language: string;
 }
 
-type Contact = {
+export type Contact = {
   id: number
   first_name: string
   last_name: string
-  company_name: string
+  company_name: string | null
+  emails: {
+    id: number
+    label: string,
+    value: string
+  }
   phone_numbers: {
     id: number
     label: string,

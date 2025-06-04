@@ -8,7 +8,7 @@ import useLocalStorageState from "use-local-storage-state";
 
 export default function GlobalApp() {
   const [aircallWorkspace, setAircallWorkspace] = useState<AircallWorkspace | undefined>(undefined)
-  const [activeCall, setActiveCall] = useLocalStorageState<ActiveCall | undefined>("", undefined)
+  const [activeCall, setActiveCall] = useLocalStorageState<ActiveCall | undefined>("aircall-active-call", undefined)
   const [dialledNumber, setDialledNumber] = useLocalStorageState<string | undefined>('aircall-dialled-number', undefined)
 
   useEffect(() => {
