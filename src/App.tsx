@@ -1,5 +1,5 @@
 import { CallDetailsPage, ListCallsPage } from "./pages/calls";
-import { ContactDetailsPage } from "./pages/contacts";
+import { ContactDetailsPage, CreateContactPage } from "./pages/contacts";
 import { CreateCallCommentPage } from "./pages/calls/comments";
 import { Main } from "@/pages";
 import { Routes, Route } from "react-router-dom";
@@ -27,7 +27,7 @@ const App = () => {
 
         <Route path="contacts">
           <Route index element={<>I AM A LIST OF CONTACTS</>} />
-          <Route path="create" element={<>I AM A FORM FOR CREATING A CONTACT</>} />
+          <Route path="create" element={<CreateContactPage/>} />
           <Route path=":contactId" >
             <Route index element={<ContactDetailsPage />} />
           </Route>

@@ -1,2 +1,5 @@
 export { default as ErrorText } from "./ErrorText"
+export { default as FormSection } from "./FormSection"
+export { default as InputGroup } from "./InputGroup"
+export { default as Required } from "./Required"
 export { default as TextArea } from "./TextArea"

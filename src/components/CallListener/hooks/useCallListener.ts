@@ -27,13 +27,13 @@ export default function useCallListener() {
       setIsNavigating(true)
 
       if (contactResponse.contacts.length < 1) {
-        // navigate to the create page
-        navigate(`/contacts/create`)
+        // navigate to the create contact page.
+        navigate(`/contacts/create?phoneNumber=${encodeURIComponent(activeCall.phoneNumber)}`)
         return
       }
 
       if (contactResponse.contacts.length > 1) {
-        // navigate to the select page.
+        // navigate to the contact list page.
         navigate(`/contacts?filter=${activeCall.phoneNumber}`)
         return
       }
