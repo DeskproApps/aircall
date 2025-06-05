@@ -1,6 +1,7 @@
 import { Button, DeskproTheme, Stack } from "@deskpro/deskpro-ui";
 import { EmailFields, FormField, PhoneNumberFields } from "./";
 import { FormSection } from "@/components/forms";
+import Callout from "@/components/Callout";
 import useCreateContactForm from "../hooks/useCreateContactForm";
 
 interface CreateContactFormProps {
@@ -15,7 +16,7 @@ export function CreateContactForm(props: Readonly<CreateContactFormProps>) {
 
   return (
     <form onSubmit={(e) => { void form.onSubmit(e) }}>
-      <Stack vertical gap={0} style={{ width: "100%" }}>
+      <Stack vertical style={{ width: "100%" }}>
         <FormSection>
           <FormField name="firstName" required theme={theme} label="First Name" form={form} />
           <FormField name="lastName" required theme={theme} label="Last Name" form={form} />
@@ -38,13 +39,24 @@ export function CreateContactForm(props: Readonly<CreateContactFormProps>) {
             theme={theme} />
         </FormSection>
 
+        {form.submissionError && (
+          <Stack style={{ width: "100%" }} padding={12}>
+            <Callout
+              accent="red"
+              style={{ width: "100%" }}
+            >
+              {form.submissionError}
+            </Callout>
+          </Stack>
+        )}
+
         <Stack gap={8} padding={12} justify="space-between" style={{ width: "100%" }}>
           <Button
-            style={{ cursor: (formHasVisibleErrors) ? "not-allowed" : "pointer" }}
+            style={{ cursor: (formHasVisibleErrors || form.isSubmitting) ? "not-allowed" : "pointer" }}
             type="submit"
             text={"Create"}
-            // loading={form.isSubmitting}
-            disabled={formHasVisibleErrors}
+            loading={form.isSubmitting}
+            disabled={formHasVisibleErrors || form.isSubmitting}
           />
         </Stack>
       </Stack>

@@ -1,5 +1,5 @@
 import { CreateContactForm } from "./components";
-import { useDeskproAppTheme, useInitialisedDeskproAppClient } from "@deskpro/app-sdk";
+import { useDeskproAppTheme, useDeskproElements, useInitialisedDeskproAppClient } from "@deskpro/app-sdk";
 import { useLocation } from "react-router-dom";
 
 export default function CreateContactPage() {
@@ -11,6 +11,12 @@ export default function CreateContactPage() {
 
   useInitialisedDeskproAppClient((client) => {
     client.setTitle("Create Contact")
+  }, [])
+
+  useDeskproElements(({ clearElements, registerElement, deRegisterElement }) => {
+    clearElements()
+    deRegisterElement("home")
+    registerElement("refresh", { type: "refresh_button" })
   }, [])
 
   return (
