@@ -4,7 +4,7 @@ export default function formatTimeSince(date: string | number | Date): string {
     const differenceInSeconds = Math.floor((now.getTime() - past.getTime()) / 1000)
 
     if (differenceInSeconds < 5) {
-        return 'just now'
+        return 'now'
     }
 
     const intervals: { label: string; seconds: number }[] = [
@@ -25,5 +25,5 @@ export default function formatTimeSince(date: string | number | Date): string {
         }
     }
 
-    return 'just now'
+    return 'now'
 }

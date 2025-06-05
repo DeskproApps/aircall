@@ -29,7 +29,7 @@ export function setFormDefaultValues(phoneNumber: string | undefined): CreateCon
         emails: [],
         phoneNumbers: [{
             label: "",
-            value: phoneNumber ?? ""
+            value: phoneNumber?.replace(/\s+/g, '') ?? ""
         }]
     }
 }

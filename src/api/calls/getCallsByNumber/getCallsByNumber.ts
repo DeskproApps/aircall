@@ -7,7 +7,7 @@ export default async function getCallsByNumber(client: IDeskproClient, phoneNumb
 
     return await baseRequest<{ calls: Call[] }>(client, {
         endpoint: `calls/search?${createSearchParams([
-            ["phone_number", phoneNumber],
+            ["phone_number", phoneNumber.replace(/\s+/g, '')],
             ["per_page", "100"],
             ["fetch_contact", "true"],
             ["order", "desc"],
