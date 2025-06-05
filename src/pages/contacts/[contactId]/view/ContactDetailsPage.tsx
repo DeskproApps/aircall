@@ -1,4 +1,4 @@
-import { LoadingSpinner, Property, useDeskproElements } from "@deskpro/app-sdk";
+import { LoadingSpinner, Property, useDeskproElements, useInitialisedDeskproAppClient } from "@deskpro/app-sdk";
 import { P1, P3, Stack } from "@deskpro/deskpro-ui";
 import { useParams } from "react-router-dom";
 import Callout from "@/components/Callout";
@@ -6,14 +6,17 @@ import isValidInteger from "@/utils/isValidInteger";
 import useContact from "@/hooks/useContact";
 
 export default function ContactDetailsPage() {
-  const { contactId } = useParams()
+  useInitialisedDeskproAppClient((client) => {
+    client.setTitle("Contact")
+  }, [])
+
   useDeskproElements(({ clearElements, registerElement }) => {
     clearElements()
     registerElement("home", { type: "home_button" })
     registerElement("refresh", { type: "refresh_button" })
   }, [])
 
-
+  const { contactId } = useParams()
   const { isLoading, contact } = useContact(contactId ?? "")
 
   if (!contactId || !isValidInteger(contactId)) {

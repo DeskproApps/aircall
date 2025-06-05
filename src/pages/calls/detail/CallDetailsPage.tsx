@@ -2,16 +2,17 @@ import { CallComments, CallContact, CallTags, CallUser } from "./components";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatDuration, formatTimestamp } from "@/utils/date";
-import { HorizontalDivider, Link, LoadingSpinner, Property, useDeskproAppTheme, useDeskproElements } from "@deskpro/app-sdk";
+import { HorizontalDivider, Link, LoadingSpinner, Property, useDeskproAppTheme, useDeskproElements, useInitialisedDeskproAppClient } from "@deskpro/app-sdk";
 import { P3, Stack } from "@deskpro/deskpro-ui";
 import { useParams } from "react-router-dom";
 import Callout from "@/components/Callout";
 import isValidInteger from "@/utils/isValidInteger";
 import useCall from "./hooks/useCall";
 
-
-
 export default function CallDetailsPage(): JSX.Element {
+    useInitialisedDeskproAppClient((client) => {
+        client.setTitle("Call Details")
+    }, [])
 
     useDeskproElements(({ clearElements, registerElement }) => {
         clearElements()
@@ -21,7 +22,6 @@ export default function CallDetailsPage(): JSX.Element {
 
     const { callId } = useParams()
     const { theme } = useDeskproAppTheme()
-
     const { isLoading, call } = useCall(callId ?? "")
 
     if (!callId || !isValidInteger(callId)) {

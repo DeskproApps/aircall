@@ -1,14 +1,19 @@
-import { ErrorText, TextArea } from "@/components/forms";
-import { useDeskproAppTheme, useInitialisedDeskproAppClient } from "@deskpro/app-sdk";
 import { Button, Label, Stack } from "@deskpro/deskpro-ui";
-import useCreateCallCommentForm from "./hooks/useCreateCallCommentForm";
+import { ErrorText, TextArea } from "@/components/forms";
+import { useDeskproAppTheme, useDeskproElements, useInitialisedDeskproAppClient } from "@deskpro/app-sdk";
 import { useParams } from "react-router-dom";
 import Callout from "@/components/Callout";
+import useCreateCallCommentForm from "./hooks/useCreateCallCommentForm";
 
 export default function CreateCallCommentPage() {
-
     useInitialisedDeskproAppClient((client) => {
         client.setTitle("Create Comment")
+    }, [])
+
+    useDeskproElements(({ clearElements, registerElement }) => {
+        clearElements()
+        registerElement("home", { type: "home_button" })
+        registerElement("refresh", { type: "refresh_button" })
     }, [])
 
     const { callId } = useParams()
