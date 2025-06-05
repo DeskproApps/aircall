@@ -7,7 +7,7 @@
   "isSingleInstall": true,
   "hasDevMode": true,
   "targets": [
-    { "target": "global", "entrypoint": "#/global" },
+    { "target": "global", "entrypoint": "#/global", "options": {"height": "666px", "width": "376px"} },
     { "target": "ticket_sidebar", "entrypoint": "#/calls" },
     { "target": "user_sidebar", "entrypoint": "#/calls" }
   ],
