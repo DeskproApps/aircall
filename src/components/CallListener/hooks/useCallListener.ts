@@ -1,6 +1,6 @@
 import { ActiveCall } from "@/types/aircall";
 import { getContactsByNumber } from "@/api/contacts";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQueryWithClient } from "@deskpro/app-sdk";
 import useLocalStorageState from "use-local-storage-state";
@@ -9,7 +9,6 @@ export default function useCallListener() {
   const navigate = useNavigate()
 
   const [activeCall] = useLocalStorageState<ActiveCall | undefined>("aircall-active-call", undefined)
-  const [isNavigating, setIsNavigating] = useState(false)
 
   const { data: contactResponse, isLoading: isQueryLoading } = useQueryWithClient(
     ["activeCall", activeCall?.callId?.toString() ?? ""],
@@ -24,7 +23,6 @@ export default function useCallListener() {
 
   useEffect(() => {
     if (activeCall && !isQueryLoading && contactResponse) {
-      setIsNavigating(true)
 
       if (contactResponse.contacts.length < 1) {
         // navigate to the create contact page.
@@ -43,6 +41,6 @@ export default function useCallListener() {
   }, [activeCall, contactResponse, isQueryLoading, navigate])
 
   return {
-    isLoading: !!activeCall && (isQueryLoading || isNavigating)
+    isLoading: !!activeCall && (isQueryLoading || (!isQueryLoading && !!contactResponse))
   }
 }
