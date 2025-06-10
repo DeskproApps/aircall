@@ -4,6 +4,15 @@ export type ActiveCall = {
   phoneNumber: string
 }
 
+export type ResponseMeta = {
+  count: number
+  total: number
+  current_page: number
+  per_page: number
+  next_page_link: null | string
+  previous_page_link: null | string
+}
+
 export type Call = {
   id: number;
   direct_link: string;

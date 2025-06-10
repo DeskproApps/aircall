@@ -1,25 +1,34 @@
+import { HorizontalDivider, Search, useDeskproAppTheme, useDeskproElements, useInitialisedDeskproAppClient } from "@deskpro/app-sdk";
+import { P8, Pagination, Stack } from "@deskpro/deskpro-ui";
 import { Required } from "@/components/forms";
-import useDebounce from "@/hooks/useDebounce";
-import { HorizontalDivider, Search, useDeskproAppTheme, useInitialisedDeskproAppClient } from "@deskpro/app-sdk";
-import { P8, Stack } from "@deskpro/deskpro-ui";
+import { useLocation } from "react-router-dom";
 import { useState } from "react";
-import useContacts from "./hooks/useContacts";
+import ContactSection from "./components/ContactSection";
+import useContacts, { CONTACTS_PER_PAGE } from "./hooks/useContacts";
+import useDebounce from "@/hooks/useDebounce";
 
 export default function ListContactsPage() {
-
   useInitialisedDeskproAppClient((client) => {
     client.setTitle("Contacts")
   }, [])
 
+  useDeskproElements(({ clearElements, registerElement, deRegisterElement }) => {
+    clearElements()
+    deRegisterElement("menu")
+    registerElement("home", { type: "home_button" })
+    registerElement("refresh", { type: "refresh_button" })
+  }, [])
+
   const { theme } = useDeskproAppTheme()
 
-  const [searchQuery, setSearchQuery] = useState("")
+  const location = useLocation()
+  const searchParams = new URLSearchParams(location.search)
+  const defaultSearch = searchParams.get('filter')
+
+  const [searchQuery, setSearchQuery] = useState<string>(defaultSearch ?? "")
   const { debouncedValue: debouncedSearchQuery } = useDebounce(searchQuery, 500)
 
-  const { isLoading, contacts } = useContacts({ searchQuery: debouncedSearchQuery })
-
-
-
+  const { isLoading, contacts, totalContacts, page, setPage } = useContacts({ searchQuery: debouncedSearchQuery })
 
   return (
     <Stack vertical>
@@ -29,14 +38,16 @@ export default function ListContactsPage() {
             Phone number or email address <Required theme={theme} />
           </P8>
         </label>
+
         <Search
-        isFetching={isLoading}
+          isFetching={isLoading}
           marginBottom={0}
           onChange={(search) => {
             setSearchQuery(search)
           }}
           inputProps={{
             id: "searchInput",
+            value: searchQuery,
             placeholder: `Search contact`
           }}
         />
@@ -44,11 +55,24 @@ export default function ListContactsPage() {
 
       <HorizontalDivider style={{ width: "100%", marginBottom: "0px" }} />
 
-      <Stack vertical padding={12}>
-        {contacts.map((contact)=>{
-          return (<div>{contact.first_name} {contact.last_name}</div>)
-        })}
-      </Stack>
+      <ContactSection theme={theme} contacts={contacts} isLoading={isLoading} />
+
+      {/* Only showing pagination when necessary here because navArrow is buggy when totalItems is 0. */}
+      {totalContacts > CONTACTS_PER_PAGE && (
+        <Stack padding={12}>
+          <Pagination
+            perPage={CONTACTS_PER_PAGE}
+            currentPage={page}
+            totalItems={totalContacts}
+            displayItems={["pageSelect", "navArrows", "total",]}
+            itemsPerPageText="hug"
+            uniqueItemsText=""
+            ofTotalText="of {total}"
+            onPageChange={(page) => { setPage(page) }}
+          />
+        </Stack>
+      )}
+
     </Stack>
   )
 }

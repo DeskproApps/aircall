@@ -1,4 +1,4 @@
-import { Contact } from "@/types/aircall";
+import { Contact, ResponseMeta } from "@/types/aircall";
 import { IDeskproClient } from "@deskpro/app-sdk";
 import baseRequest from "@/api/baseRequest";
 import z from "zod";
@@ -15,7 +15,12 @@ interface GetContactsParams {
   sort?: "asc" | "desc",
 }
 
-export default async function getContacts(client: IDeskproClient, params: Readonly<GetContactsParams>) {
+interface GetContactsResponse {
+  contacts: Contact[]
+  meta: ResponseMeta
+}
+
+export default async function getContacts(client: IDeskproClient, params: Readonly<GetContactsParams>): Promise<GetContactsResponse> {
   const { phoneNumber, email, page = 1, perPage = 50, sort = "desc" } = params
 
   const searchParams = new URLSearchParams()
@@ -37,7 +42,7 @@ export default async function getContacts(client: IDeskproClient, params: Readon
   searchParams.set("order", sort)
 
 
-  return await baseRequest<{ contacts: Contact[] }>(client, {
+  return await baseRequest<GetContactsResponse>(client, {
     endpoint: `contacts/search?${searchParams.toString()}`,
   })
 }
