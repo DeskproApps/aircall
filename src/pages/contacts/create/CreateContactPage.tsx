@@ -13,10 +13,22 @@ export default function CreateContactPage() {
     client.setTitle("Create Contact")
   }, [])
 
-  useDeskproElements(({ clearElements, registerElement, deRegisterElement }) => {
+  useDeskproElements(({ clearElements, registerElement }) => {
     clearElements()
-    deRegisterElement("home")
+    registerElement("home", { type: "home_button" })
     registerElement("refresh", { type: "refresh_button" })
+    registerElement("menu", {
+      type: "menu",
+      items: [
+        {
+          title: "View Contacts",
+          payload: {
+            type: "changePath",
+            path: "/contacts"
+          },
+        }
+      ]
+    })
   }, [])
 
   return (

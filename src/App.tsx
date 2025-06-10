@@ -6,8 +6,12 @@ import { Routes, Route } from "react-router-dom";
 import { VerifySettingsPage } from "./pages/admin";
 import CallListener from "./components/CallListener";
 import GlobalApp from "./pages/global";
+import useAppNavigation from "./hooks/useAppNavigation";
 
-const App = () => {
+
+export function App() {
+  useAppNavigation()
+
   return (
     <Routes>
       <Route path="/">
@@ -26,7 +30,7 @@ const App = () => {
         </Route>
 
         <Route path="contacts">
-          <Route index element={<ListContactsPage/>} />
+          <Route index element={<ListContactsPage />} />
           <Route path="create" element={<CreateContactPage />} />
           <Route path=":contactId" >
             <Route index element={<ContactDetailsPage />} />
@@ -36,5 +40,3 @@ const App = () => {
     </Routes>
   );
 }
-
-export { App };

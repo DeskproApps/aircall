@@ -18,6 +18,18 @@ export default function CallDetailsPage(): JSX.Element {
         clearElements()
         registerElement("home", { type: "home_button" })
         registerElement("refresh", { type: "refresh_button" })
+        registerElement("menu", {
+            type: "menu",
+            items: [
+                {
+                    title: "View Contacts",
+                    payload: {
+                        type: "changePath",
+                        path: "/contacts"
+                    },
+                }
+            ]
+        })
     }, [])
 
     const { callId } = useParams()

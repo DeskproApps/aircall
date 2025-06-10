@@ -14,6 +14,18 @@ export default function ListCallsPage() {
         clearElements()
         deRegisterElement("home")
         registerElement("refresh", { type: "refresh_button" })
+        registerElement("menu", {
+            type: "menu",
+            items: [
+                {
+                    title: "View Contacts",
+                    payload: {
+                        type: "changePath",
+                        path: "/contacts"
+                    },
+                }
+            ]
+        })
     }, [])
 
     const { theme } = useDeskproAppTheme()
