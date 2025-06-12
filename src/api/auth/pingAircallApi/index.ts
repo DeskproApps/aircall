@@ -1,1 +1,1 @@
-export { default } from "./verifyAircallAdminCredentials"
+export { default } from "./pingAircallApi"

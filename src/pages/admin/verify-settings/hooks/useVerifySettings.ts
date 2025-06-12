@@ -1,4 +1,4 @@
-import { verifyAircallAdminCredentials } from "@/api/auth";
+import { pingAircallApi } from "@/api/auth";
 import { useDeskproAppClient } from "@deskpro/app-sdk";
 import { useState } from "react";
 
@@ -25,7 +25,7 @@ export default function useVerifySettings(params: UseVerifySettingsParams): UseV
 
         setIsLoading(true)
 
-        const isValid = await verifyAircallAdminCredentials(client,
+        const isValid = await pingAircallApi(client,
             { aircallApiId, aircallApiToken })
 
         setIsValid(isValid)
