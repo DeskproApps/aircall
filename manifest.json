@@ -7,9 +7,22 @@
   "isSingleInstall": true,
   "hasDevMode": true,
   "targets": [
-    { "target": "global", "entrypoint": "#/global", "options": {"height": "666px", "width": "376px"} },
-    { "target": "ticket_sidebar", "entrypoint": "#/calls" },
-    { "target": "user_sidebar", "entrypoint": "#/calls" }
+    {
+      "target": "global",
+      "entrypoint": "#/global",
+      "options": {
+        "height": "666px",
+        "width": "376px"
+      }
+    },
+    {
+      "target": "ticket_sidebar",
+      "entrypoint": "index.html"
+    },
+    {
+      "target": "user_sidebar",
+      "entrypoint": "index.html"
+    }
   ],
   "settings": {
     "aircall_api_id": {
@@ -29,7 +42,10 @@
     "verify_settings": {
       "title": "",
       "type": "app_embedded",
-      "options": { "entrypoint": "#/admin/verify-settings", "height": 60 },
+      "options": {
+        "entrypoint": "#/admin/verify-settings",
+        "height": 60
+      },
       "isRequired": false,
       "isBackendOnly": false,
       "order": 40
@@ -39,7 +55,9 @@
     "whitelist": [
       {
         "url": "https://jsonplaceholder.typicode.com/.*",
-        "methods": ["GET"],
+        "methods": [
+          "GET"
+        ],
         "timeout": 20
       },
       {
@@ -51,7 +69,12 @@
       },
       {
         "url": "https://api.aircall.io/.*",
-        "methods": ["GET", "POST", "PUT", "DELETE"],
+        "methods": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE"
+        ],
         "timeout": 15
       }
     ]
