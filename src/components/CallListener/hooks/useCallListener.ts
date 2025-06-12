@@ -1,5 +1,5 @@
 import { ActiveCall } from "@/types/aircall";
-import { getContactsByNumber } from "@/api/contacts";
+import { getContacts } from "@/api/contacts";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQueryWithClient } from "@deskpro/app-sdk";
@@ -14,7 +14,7 @@ export default function useCallListener() {
     ["activeCall", activeCall?.callId?.toString() ?? ""],
     (client) => {
 
-      return getContactsByNumber(client, activeCall?.phoneNumber ?? "")
+      return getContacts(client, { phoneNumber: activeCall?.phoneNumber ?? "" })
     },
     {
       enabled: !!activeCall
