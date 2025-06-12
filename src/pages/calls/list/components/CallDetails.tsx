@@ -50,11 +50,8 @@ export function CallDetails(props: Readonly<CallDetailsProps>) {
                     </P1>
                 </Stack>
             </Stack>
-
-
         </Stack>
     )
-
 }
 
 function getCallTargetUser(call: Call): {

@@ -1,4 +1,4 @@
-import baseRequest from "@/api/baseRequest";
+import aircallRequest from "@/api/aircallRequest";
 import { IDeskproClient } from "@deskpro/app-sdk";
 
 interface CallCommentPayload {
@@ -13,7 +13,7 @@ export interface CreateCallCommentParams {
 export default async function createCallComment(client: IDeskproClient, params: CreateCallCommentParams) {
     const { callId, payload } = params
 
-    return await baseRequest<void>(client, {
+    return await aircallRequest<void>(client, {
         endpoint: `calls/${callId}/comments`,
         method: "POST",
         data: payload

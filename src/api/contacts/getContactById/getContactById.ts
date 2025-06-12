@@ -1,10 +1,10 @@
 import { Contact } from "@/types/aircall";
 import { IDeskproClient } from "@deskpro/app-sdk";
-import baseRequest, { AircallError, isErrorWithTroubleshoot } from "@/api/baseRequest";
+import aircallRequest, { AircallError, isErrorWithTroubleshoot } from "@/api/aircallRequest";
 
 export default async function getContactById(client: IDeskproClient, contactId: string) {
   try {
-    return await baseRequest<{ contact: Contact }>(client, {
+    return await aircallRequest<{ contact: Contact }>(client, {
       endpoint: `contacts/${contactId}`,
     })
   } catch (e) {

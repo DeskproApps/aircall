@@ -1,6 +1,6 @@
 import { Call, ResponseMeta } from "@/types/aircall";
 import { IDeskproClient } from "@deskpro/app-sdk";
-import baseRequest from "@/api/baseRequest";
+import aircallRequest from "@/api/aircallRequest";
 import z from "zod";
 
 const phoneNumberSchema = z.string().regex(/^\+?\d+$/, {
@@ -44,7 +44,7 @@ export default async function getCalls(client: IDeskproClient, params: Readonly<
   searchParams.set("fetch_contact", includeContacts ? "true" : "false")
 
 
-  return await baseRequest<GetCallsResponse>(client, {
+  return await aircallRequest<GetCallsResponse>(client, {
     endpoint: `calls/search?${searchParams.toString()}`,
   })
 }

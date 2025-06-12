@@ -1,6 +1,6 @@
 import { Contact, ResponseMeta } from "@/types/aircall";
 import { IDeskproClient } from "@deskpro/app-sdk";
-import baseRequest from "@/api/baseRequest";
+import aircallRequest from "@/api/aircallRequest";
 import z from "zod";
 
 const phoneNumberSchema = z.string().regex(/^\+?\d+$/, {
@@ -42,7 +42,7 @@ export default async function getContacts(client: IDeskproClient, params: Readon
   searchParams.set("order", sort)
 
 
-  return await baseRequest<GetContactsResponse>(client, {
+  return await aircallRequest<GetContactsResponse>(client, {
     endpoint: `contacts/search?${searchParams.toString()}`,
   })
 }

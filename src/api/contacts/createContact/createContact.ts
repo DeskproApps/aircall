@@ -1,6 +1,6 @@
 import { Contact } from "@/types/aircall";
 import { IDeskproClient } from "@deskpro/app-sdk";
-import baseRequest from "@/api/baseRequest";
+import aircallRequest from "@/api/aircallRequest";
 
 export interface CreateContactPayload {
   first_name: string
@@ -18,5 +18,5 @@ export interface CreateContactPayload {
 }
 
 export default async function createContact(client: IDeskproClient, payload: CreateContactPayload): Promise<{ contact: Contact }> {
-  return await baseRequest<{ contact: Contact }>(client, { endpoint: "contacts", method: "POST", data: payload })
+  return await aircallRequest<{ contact: Contact }>(client, { endpoint: "contacts", method: "POST", data: payload })
 }
