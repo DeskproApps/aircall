@@ -14,7 +14,7 @@ export function ContactDetails(props: Readonly<ContactDetailsProps>) {
     return (
         <Stack vertical gap={12} padding={12} style={{ width: "100%" }}>
             <Stack align={"center"} justify={"space-between"} style={{ width: "100%" }}>
-                <H2 style={{ fontWeight: 500 }}>{contact.name ?? "No Name Available"}</H2>
+                <H2 style={{ fontWeight: 500 }}>{contact.name && contact.name.trim() !== ""? contact.name: "No Name Available"}</H2>
             </Stack>
 
             {contact.phoneNumbers.length > 0 && (
