@@ -57,7 +57,6 @@ export async function getAllCalls(client: IDeskproClient, params: Readonly<Omit<
   let pagesFetched = 0
   let page = 1
 
-
   while (hasMorePages && !hasErrors) {
     try {
       const response = await getCalls(client,

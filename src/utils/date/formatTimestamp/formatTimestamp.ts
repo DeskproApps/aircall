@@ -1,3 +1,8 @@
+/**
+ * Formats a Unix timestamp into a readable date string.
+ * 
+ * @example formatTimestamp(0) // Thurs 1st January 1970, 00:00
+ */
 export default function formatTimestamp(unixTimestamp: number): string {
     const date = new Date(unixTimestamp * 1000)
 

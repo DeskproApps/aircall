@@ -1,7 +1,11 @@
+/**
+ * Provides a readable time since given date (e.g., "5 secs", "1 min", "2 days")
+ * 
+ */
 export default function formatTimeSince(date: string | number | Date): string {
-    const now = new Date()
+    const now = Date.now()
     const past = new Date(date)
-    const differenceInSeconds = Math.floor((now.getTime() - past.getTime()) / 1000)
+    const differenceInSeconds = Math.floor((now - past.getTime()) / 1000)
 
     if (differenceInSeconds < 5) {
         return 'now'
