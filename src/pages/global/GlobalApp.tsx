@@ -55,11 +55,12 @@ export default function GlobalApp() {
   }, [activeCall?.phoneNumber])
 
   return (
-    <section style={{ height: "100%", width: "100%", position: "relative" }}>
-      <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
+    <section style={{ height: "666px", width: "100%", position: "relative" }}>
+      <div id="workspace-loader" style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         <LoadingSpinner />
       </div>
-      <div id="workspace" style={{ position: 'absolute', zIndex: 2 }} />
+
+      <div id="workspace" style={{ zIndex: 22, position: "relative" }} />
     </section>
   )
 }
