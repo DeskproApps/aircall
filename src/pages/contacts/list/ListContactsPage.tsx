@@ -1,3 +1,4 @@
+import "./ListContactsPage.css"
 import { HorizontalDivider, Search, useDeskproAppTheme, useDeskproElements, useInitialisedDeskproAppClient } from "@deskpro/app-sdk";
 import { P8, Pagination, Stack } from "@deskpro/deskpro-ui";
 import { Required } from "@/components/forms";
@@ -32,7 +33,7 @@ export default function ListContactsPage() {
 
   return (
     <Stack vertical>
-      <Stack vertical padding={12} gap={5}>
+      <Stack className={"searchSection"} vertical padding={12} gap={5} style={{ width: "100%" }}>
         <label htmlFor="searchInput">
           <P8 style={{ color: theme?.colors?.grey80 }}>
             Phone number or email address <Required theme={theme} />
