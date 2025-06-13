@@ -54,13 +54,6 @@
   "proxy": {
     "whitelist": [
       {
-        "url": "https://jsonplaceholder.typicode.com/.*",
-        "methods": [
-          "GET"
-        ],
-        "timeout": 20
-      },
-      {
         "url": "https://(.*)@api.aircall.io/v1/ping",
         "methods": [
           "GET"
