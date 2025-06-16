@@ -1,8 +1,8 @@
 import { Button, Stack } from "@deskpro/deskpro-ui";
 import { CredentialStatus } from "./components/CredentialStatus";
-import { useDeskproAppTheme, useDeskproLatestAppContext } from "@deskpro/app-sdk";
+import { useDeskproAppClient, useDeskproAppEvents, useDeskproAppTheme } from "@deskpro/app-sdk";
+import { useState } from "react";
 import useVerifySettings from "./hooks/useVerifySettings";
-
 
 interface AdminDrawerSettings {
     aircall_api_id?: string
@@ -10,9 +10,14 @@ interface AdminDrawerSettings {
 }
 
 export default function VerifySettingsPage(): JSX.Element {
-    const { context } = useDeskproLatestAppContext<unknown, AdminDrawerSettings>()
+    const { client } = useDeskproAppClient()
+    const [settings, setSettings] = useState<AdminDrawerSettings | null>(null)
+
+    useDeskproAppEvents({
+        onAdminSettingsChange: setSettings,
+    }, [client])
+
     const { theme } = useDeskproAppTheme()
-    const settings = context?.settings
 
     const { isLoading, isValid, onVerifyClick } = useVerifySettings({
         aircallApiId: settings?.aircall_api_id,
@@ -20,13 +25,15 @@ export default function VerifySettingsPage(): JSX.Element {
     })
 
     const isIncompleteSettings = !settings?.aircall_api_id?.trim() || !settings?.aircall_api_token?.trim()
+    const isDisabled = isIncompleteSettings || isLoading
 
     return (
         <Stack gap={8} align={"center"}>
             <Button
+                style={{ cursor: isDisabled ? "not-allowed" : "pointer" }}
                 text="Verify Settings"
                 intent="secondary"
-                disabled={isIncompleteSettings || isLoading}
+                disabled={isDisabled}
                 onClick={onVerifyClick}
             />
 
