@@ -3,6 +3,7 @@ import { IDeskproClient } from "@deskpro/app-sdk";
 import aircallRequest from "@/api/aircallRequest";
 import z from "zod";
 
+// Not using isE164Compliant here because this endpoint is a bit lenient.
 const phoneNumberSchema = z.string().regex(/^\+?\d+$/, {
   message: "Phone number must be numeric and may optionally start with +",
 })

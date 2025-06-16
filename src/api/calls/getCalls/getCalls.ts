@@ -1,11 +1,7 @@
 import { Call, ResponseMeta } from "@/types/aircall";
 import { IDeskproClient } from "@deskpro/app-sdk";
 import aircallRequest from "@/api/aircallRequest";
-import z from "zod";
-
-const phoneNumberSchema = z.string().regex(/^\+?\d+$/, {
-  message: "Phone number must be numeric and may optionally start with +",
-})
+import isE164Compliant from "@/utils/isE164Compliant";
 
 interface GetCallsParams {
   phoneNumber?: string,
@@ -28,9 +24,9 @@ export default async function getCalls(client: IDeskproClient, params: Readonly<
 
   if (phoneNumber) {
     const trimmedPhone = phoneNumber.replace(/\s+/g, "")
-    const parsedPhone = phoneNumberSchema.safeParse(trimmedPhone)
-    if (parsedPhone.success) {
-      searchParams.set("phone_number", trimmedPhone);
+    const formattedPhone = trimmedPhone.startsWith('+') ? trimmedPhone : `+${trimmedPhone}`
+    if (isE164Compliant(formattedPhone)) {
+      searchParams.set("phone_number", trimmedPhone)
     }
   }
 

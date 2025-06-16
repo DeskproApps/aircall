@@ -1,3 +1,4 @@
+import isE164Compliant from "@/utils/isE164Compliant";
 import { z } from "zod";
 
 export type CreateContactFormMeta = z.infer<typeof createContactSchema>
@@ -9,7 +10,7 @@ const emailSchema = z.object({
 
 const phoneNumberSchema = z.object({
     label: z.string().min(1, "Label cannot be empty.").max(225, "Label cannot contain more that 225 character."),
-    value: z.string().regex(/^\+\d{8,15}$/, { message: "Phone number must be in E.164 format (e.g., +1234567890)." }),
+    value: z.string().refine(isE164Compliant, { message: "Phone number must be in E.164 format (e.g., +1234567890) and valid." })
 })
 
 export const createContactSchema = z.object({
