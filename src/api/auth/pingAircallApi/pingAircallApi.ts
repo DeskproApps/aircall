@@ -10,7 +10,7 @@ export default async function pingAircallApi(client: IDeskproClient, params?: Pi
 
     const dpFetch = await (params ? adminGenericProxyFetch : proxyFetch)(client)
 
-    const tokens = params? `${btoa(aircallApiId + ":" + aircallApiToken)}` : `__aircalll_api_id+':'+aircall_api_token.base64___`
+    const tokens = params? `${btoa(aircallApiId + ":" + aircallApiToken)}` : `__aircall_api_id+':'+aircall_api_token.base64___`
     try {
         const response = await dpFetch(`https://api.aircall.io/v1/ping`, {
             method: "GET",
