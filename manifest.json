@@ -54,13 +54,6 @@
   "proxy": {
     "whitelist": [
       {
-        "url": "https://(.*)@api.aircall.io/v1/ping",
-        "methods": [
-          "GET"
-        ],
-        "timeout": 30
-      },
-      {
         "url": "https://api.aircall.io/.*",
         "methods": [
           "GET",

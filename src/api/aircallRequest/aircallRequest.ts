@@ -1,6 +1,6 @@
 import { IDeskproClient, proxyFetch } from "@deskpro/app-sdk";
 
-interface BaseRequestParams {
+interface AircallRequestParams {
     endpoint: string,
     method?: "GET" | "POST",
     data?: unknown
@@ -11,9 +11,9 @@ interface BaseRequestParams {
  *
  * @template T - The type of the response data.
  * 
- * @throws {DocusignError} If the HTTP status code indicates a failed request (not 2xx or 3xx).
+ * @throws {AircallError} If the HTTP status code indicates a failed request (not 2xx or 3xx).
  */
-export default async function baseRequest<T>(client: IDeskproClient, params: BaseRequestParams): Promise<T> {
+export default async function aircallRequest<T>(client: IDeskproClient, params: AircallRequestParams): Promise<T> {
     const { endpoint, method, data } = params
 
     const baseURL = `https://api.aircall.io/v1`
