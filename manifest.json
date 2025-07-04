@@ -1,27 +1,67 @@
 {
-  "name": "@deskpro-apps/my-app",
+  "name": "@deskpro-apps/aircall",
   "title": "Aircall",
-  "description": "My Deskpro app",
+  "description": "Business phone for high-performing teams, integrated with CRM & Helpdesk.",
   "version": "0.0.24",
   "scope": "agent",
-  "isSingleInstall": false,
+  "isSingleInstall": true,
   "hasDevMode": true,
-  "targets": [{ "target": "ticket_sidebar", "entrypoint": "index.html" }],
+  "targets": [
+    {
+      "target": "global",
+      "entrypoint": "#/global",
+      "options": {
+        "height": "666px",
+        "width": "376px"
+      }
+    },
+    {
+      "target": "ticket_sidebar",
+      "entrypoint": "index.html"
+    },
+    {
+      "target": "user_sidebar",
+      "entrypoint": "index.html"
+    }
+  ],
   "settings": {
-    "example": {
-      "title": "Example Setting",
-      "description": "Example backend only setting",
+    "aircall_api_id": {
+      "title": "API ID",
+      "description": "Aircall API ID",
       "type": "string",
-      "isRequired": false,
+      "isRequired": true,
       "isBackendOnly": true
+    },
+    "aircall_api_token": {
+      "title": "API Token",
+      "description": "Aircall API Token",
+      "type": "string",
+      "isRequired": true,
+      "isBackendOnly": true
+    },
+    "verify_settings": {
+      "title": "",
+      "type": "app_embedded",
+      "options": {
+        "entrypoint": "#/admin/verify-settings",
+        "height": 60
+      },
+      "isRequired": false,
+      "isBackendOnly": false,
+      "order": 40
     }
   },
   "proxy": {
     "whitelist": [
       {
-        "url": "https://jsonplaceholder.typicode.com/.*",
-        "methods": ["GET"],
-        "timeout": 20
+        "url": "https://api.aircall.io/.*",
+        "methods": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE"
+        ],
+        "timeout": 15
       }
     ]
   }
