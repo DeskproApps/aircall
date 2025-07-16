@@ -3,6 +3,7 @@
   "title": "Aircall",
   "description": "Business phone for high-performing teams, integrated with CRM & Helpdesk.",
   "version": "0.0.24",
+  "serveUrl": "https://apps-cdn.deskpro-service.com/__name__/__version__",
   "scope": "agent",
   "isSingleInstall": true,
   "hasDevMode": true,
