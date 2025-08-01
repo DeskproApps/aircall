@@ -2,15 +2,17 @@ import { Contact } from "@/types/aircall"
 import { DeskproTheme, Stack } from "@deskpro/deskpro-ui"
 import { Fragment } from "react/jsx-runtime"
 import { HorizontalDivider, Link, LoadingSpinner } from "@deskpro/app-sdk"
+import { NavigateFunction } from "react-router-dom"
 
 interface ContactSectionProps {
   contacts: Contact[]
   isLoading: boolean
   theme: DeskproTheme
+  navigate: NavigateFunction
 }
 
 export default function ContactSection(props: Readonly<ContactSectionProps>) {
-  const { contacts, isLoading, theme } = props
+  const { contacts, isLoading, theme, navigate } = props
 
   if (isLoading) {
     return (
@@ -41,7 +43,7 @@ export default function ContactSection(props: Readonly<ContactSectionProps>) {
       {contacts.map((contact) => {
         return (
           <Fragment key={contact.id}>
-            <ContactItem contact={contact} theme={theme} />
+            <ContactItem contact={contact} theme={theme} navigate={navigate} />
             <HorizontalDivider style={{ width: "100%", marginBottom: "0px" }} />
 
           </Fragment>
@@ -54,14 +56,19 @@ export default function ContactSection(props: Readonly<ContactSectionProps>) {
 interface ContactItemProps {
   contact: Contact
   theme: DeskproTheme
+  navigate: NavigateFunction
 }
 function ContactItem(props: Readonly<ContactItemProps>) {
-  const { contact, theme } = props
+  const { contact, theme, navigate } = props
 
   return (
     <Stack padding={12} gap={5} vertical style={{ width: "100%" }}>
       <Link
-        href={`/#/contacts/${contact.id}`}
+        href={`#`}
+        onClick={(e) => {
+          e.preventDefault()
+          navigate(`/contacts/${contact.id}`)
+        }}
         style={{ fontSize: "11px" }}
       >
         {contact.first_name} {contact.last_name}

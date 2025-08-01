@@ -3,14 +3,16 @@ import { CallDetails } from "./CallDetails";
 import { DeskproTheme, Stack } from "@deskpro/deskpro-ui";
 import { Fragment } from "react/jsx-runtime";
 import { HorizontalDivider, LoadingSpinner } from "@deskpro/app-sdk";
+import { NavigateFunction } from "react-router-dom";
 
 interface CallListProps {
     calls: Call[]
     theme: DeskproTheme
     isLoading: boolean
+    navigate: NavigateFunction
 }
 export function CallList(props: Readonly<CallListProps>) {
-    const { calls, theme, isLoading } = props
+    const { calls, theme, isLoading, navigate } = props
 
     if (isLoading) {
         return (
@@ -43,6 +45,7 @@ export function CallList(props: Readonly<CallListProps>) {
                         <CallDetails
                             call={call}
                             theme={theme}
+                            navigate={navigate}
                         />
                         <HorizontalDivider style={{ width: "100%" }} />
                     </Fragment>

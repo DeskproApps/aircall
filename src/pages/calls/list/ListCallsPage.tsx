@@ -3,6 +3,7 @@ import { ContextData, ContextSettings } from "@/types/deskpro/context";
 import { HorizontalDivider, useDeskproAppTheme, useDeskproElements, useDeskproLatestAppContext, useInitialisedDeskproAppClient } from "@deskpro/app-sdk";
 import { Stack } from "@deskpro/deskpro-ui";
 import { useCalls } from "./hooks";
+import { useNavigate } from "react-router-dom";
 import getDeskproUserFromContext from "@/utils/getDeskproUser";
 
 export default function ListCallsPage() {
@@ -31,6 +32,8 @@ export default function ListCallsPage() {
     const { theme } = useDeskproAppTheme()
     const { context } = useDeskproLatestAppContext<ContextData, ContextSettings>();
     const deskproUser = getDeskproUserFromContext(context?.data)
+    const navigate = useNavigate()
+
     const phoneNumbers = deskproUser?.phoneNumbers.map((number) => number.number)
     const { isLoading, calls } = useCalls(phoneNumbers ?? [])
 
@@ -47,7 +50,13 @@ export default function ListCallsPage() {
             />
 
             <HorizontalDivider style={{ width: "100%" }} />
-            <CallList isLoading={isLoading} theme={theme} calls={calls} />
+
+            <CallList
+                navigate={navigate}
+                isLoading={isLoading}
+                theme={theme}
+                calls={calls}
+            />
         </Stack>
     )
 
