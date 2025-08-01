@@ -3,14 +3,16 @@ import { Call } from "@/types/aircall"
 import { DeskproTheme, P1, Stack } from "@deskpro/deskpro-ui"
 import { formatDuration, formatTimestamp } from "@/utils/date"
 import { Link } from "@deskpro/app-sdk"
+import { NavigateFunction } from "react-router-dom"
 
 interface CallDetailsProps {
     call: Call,
-    theme: DeskproTheme
+    theme: DeskproTheme,
+    navigate: NavigateFunction
 }
 
 export function CallDetails(props: Readonly<CallDetailsProps>) {
-    const { call, theme } = props
+    const { call, theme, navigate } = props
 
     const targetUser = getCallTargetUser(call)
 
@@ -29,7 +31,11 @@ export function CallDetails(props: Readonly<CallDetailsProps>) {
                 <Stack vertical gap={3}>
                     <Link
                         color={"grey100"}
-                        href={`/#/calls/${call.id}`}
+                        href={`#`}
+                        onClick={(e) => {
+                            e.preventDefault()
+                            navigate(`/calls/${call.id}`)
+                        }}
                         style={{ fontWeight: 500, fontSize: "12px" }}
                     >
                         {targetUser.name}

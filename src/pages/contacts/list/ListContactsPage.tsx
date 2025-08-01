@@ -2,7 +2,7 @@ import "./ListContactsPage.css"
 import { HorizontalDivider, Search, useDeskproAppTheme, useDeskproElements, useInitialisedDeskproAppClient } from "@deskpro/app-sdk";
 import { P8, Pagination, Stack } from "@deskpro/deskpro-ui";
 import { Required } from "@/components/forms";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ContactSection from "./components/ContactSection";
 import useContacts, { CONTACTS_PER_PAGE } from "./hooks/useContacts";
@@ -22,6 +22,7 @@ export default function ListContactsPage() {
 
   const { theme } = useDeskproAppTheme()
 
+  const navigate = useNavigate()
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search)
   const defaultSearch = searchParams.get('filter')
@@ -56,7 +57,12 @@ export default function ListContactsPage() {
 
       <HorizontalDivider style={{ width: "100%", marginBottom: "0px" }} />
 
-      <ContactSection theme={theme} contacts={contacts} isLoading={isLoading} />
+      <ContactSection
+        theme={theme}
+        contacts={contacts}
+        isLoading={isLoading}
+        navigate={navigate}
+      />
 
       {/* Only showing pagination when necessary here because navArrow is buggy when totalItems is 0. */}
       {totalContacts > CONTACTS_PER_PAGE && (

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatDuration, formatTimestamp } from "@/utils/date";
 import { HorizontalDivider, Link, LoadingSpinner, Property, useDeskproAppTheme, useDeskproElements, useInitialisedDeskproAppClient } from "@deskpro/app-sdk";
 import { P3, Stack } from "@deskpro/deskpro-ui";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Callout from "@/components/Callout";
 import isValidInteger from "@/utils/isValidInteger";
 import useCall from "./hooks/useCall";
@@ -35,6 +35,7 @@ export default function CallDetailsPage(): JSX.Element {
     const { callId } = useParams()
     const { theme } = useDeskproAppTheme()
     const { isLoading, call } = useCall(callId ?? "")
+    const navigate = useNavigate()
 
     if (!callId || !isValidInteger(callId)) {
         return (
@@ -86,7 +87,15 @@ export default function CallDetailsPage(): JSX.Element {
             <Stack vertical gap={12} padding={12} style={{ width: "100%" }}>
                 <P3>
                     Comments {(call.call.comments?.length ?? 0) < 4 && (
-                        <Link color="grey40" href={`/#/calls/${callId}/comments/create`}>
+                        <Link
+                            color="grey40"
+                            href={`#`}
+                            onClick={(e) => {
+                                e.preventDefault()
+
+                                navigate(`/calls/${callId}/comments/create`)
+                            }}
+                        >
                             <FontAwesomeIcon size="sm" icon={faPlus} />
 
                         </Link>
