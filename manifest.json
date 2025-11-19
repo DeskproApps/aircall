@@ -65,10 +65,10 @@
         "timeout": 15,
         "settingsInjection": {
           "aircall_api_id": {
-            "headers": ["Authorization"]
+            "header": ["Authorization"]
           },
           "aircall_api_token": {
-            "headers": ["Authorization"]
+            "header": ["Authorization"]
           }
         }
       }
