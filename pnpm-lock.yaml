@@ -19,7 +19,7 @@ importers:
         version: 1.0.6(react@18.3.1)
       '@hookform/resolvers':
         specifier: ^5.2.1
-        version: 5.2.1(react-hook-form@7.61.1(react@18.3.1))
+        version: 5.2.1(react-hook-form@7.63.0(react@18.3.1))
       '@sentry/react':
         specifier: ^9.44.0
         version: 9.44.0(react@18.3.1)
@@ -42,8 +42,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       react-hook-form:
-        specifier: ^7.61.1
-        version: 7.61.1(react@18.3.1)
+        specifier: ^7.63.0
+        version: 7.63.0(react@18.3.1)
       react-is:
         specifier: ^18.3.1
         version: 18.3.1
@@ -2888,8 +2888,8 @@ packages:
     peerDependencies:
       react: ^0.14.0 || ^15.0.0 || ^16.0.0-0 || ^17.0.0-0
 
-  react-hook-form@7.61.1:
-    resolution: {integrity: sha512-2vbXUFDYgqEgM2RcXcAT2PwDW/80QARi+PKmHy5q2KhuKvOlG8iIYgf7eIlIANR5trW9fJbP4r5aub3a4egsew==}
+  react-hook-form@7.63.0:
+    resolution: {integrity: sha512-ZwueDMvUeucovM2VjkCf7zIHcs1aAlDimZu2Hvel5C5907gUzMpm4xCrQXtRzCvsBqFjonB4m3x4LzCFI1ZKWA==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
@@ -4012,10 +4012,10 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  '@hookform/resolvers@5.2.1(react-hook-form@7.61.1(react@18.3.1))':
+  '@hookform/resolvers@5.2.1(react-hook-form@7.63.0(react@18.3.1))':
     dependencies:
       '@standard-schema/utils': 0.3.0
-      react-hook-form: 7.61.1(react@18.3.1)
+      react-hook-form: 7.63.0(react@18.3.1)
 
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
@@ -6611,7 +6611,7 @@ snapshots:
       prop-types: 15.8.1
       react: 18.3.1
 
-  react-hook-form@7.61.1(react@18.3.1):
+  react-hook-form@7.63.0(react@18.3.1):
     dependencies:
       react: 18.3.1
 
